@@ -1,0 +1,57 @@
+package Shivi;
+public class LinkedList {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+       list.insert(3);
+        list.insert(1);
+       list.insert(1);
+       list.insert(1);
+        list.print();
+        list.RemoveElements();
+        System.out.println("After Removal: ");
+        list.print();
+    }
+     Node head = null;
+     class Node{
+         int Element;
+         Node next;
+         Node(int m){
+             Element =m;
+             next = null;
+        }
+    }
+     public void insert(int value){
+         Node node= new Node(value);
+         node.next = head;
+         head= node;
+     }
+     public void RemoveElements(){
+         Node temp = new Node(0);
+         temp.next= head;
+         Node prev = temp;
+         Node current = head;
+         while(current!= null){
+             while(current.next != null && prev.next.Element == current.next.Element ){
+                 current = current.next;
+             }
+             if(prev.next == current){
+                 prev = prev.next;
+             }else{
+                 prev.next = current.next;
+             }
+             current = current.next;
+         }
+         head= temp.next;
+     }
+     public void print(){
+         Node visit = head;
+         if(head == null){
+             System.out.println("Empty list");
+         }
+             while(visit != null){
+                 System.out.print(visit.Element+"-");
+                 visit = visit.next;
+         }
+             System.out.println("");
+     }
+}
